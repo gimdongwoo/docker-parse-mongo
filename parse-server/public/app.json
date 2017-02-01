@@ -1,0 +1,76 @@
+{
+	"configurationUrl": "http://parseserver-bsmcf-env.us-east-1.elasticbeanstalk.com/public/app.json",
+	"cVersion": "1.0.0",
+	"cMinimumVersion": "1.0.0",
+	"dbVersion": "1.0.0",
+	"appVersion": {
+		"ios": {
+			"recentVersion" : "1.0.0",
+			"minVersion" : "1.0.0",
+			"requestVersion" : "1.0.0",
+			"updateUrl" : "http://"
+		},
+		"android": {
+			"recentVersion" : "1.0.0",
+			"minVersion" : "1.0.0",
+			"requestVersion" : "1.0.0",
+			"updateUrl" : "http://"
+		}
+	},
+	"legal": {
+		"copyright": "Copyright 2016 Dongwoo Gim",
+		"terms": "http://",
+		"privacy": "https://"
+	},
+	"settings": {
+		"notifications": {
+			"enabled": true,
+			"provider": "Parse",
+			"key": "",
+			"secret": ""
+		},
+		"colors": {
+			"primary": "#FFFEF3",
+			"secondary": "#d8d3d1",
+			"theme": "",
+			"statusBarStyle": ""
+		},
+		"useSlideMenu": false,
+		"image": {
+			"width": 1080,
+			"quality": 0.8,
+			"thumb": 540
+		},
+		"date": {
+			"format": "YYYY/MM/DD HH:mm:ss.SSS"
+		},
+		"inputLimit": {
+			"name" : 10,
+			"comment" : 30
+		},
+		"inputMinimum": {
+			"name" : 2,
+			"comment" : 5
+		},
+		"userMinimum":{
+			"name" : 2
+		},
+		"navBarStyle": {
+			"backBtnStyle": {
+				"image": "/images/common_back.png",
+				"width": 40, "height": 40, "top": 3.5, "left": 0
+			},
+			"titleStyle": {
+				"font": { "fontSize": 18, "fontWeight": "bold" },
+				"color": "#655252"
+			}
+		},
+		"evalCode": {
+
+		}
+	},
+	"manifest": [
+	],
+	"tabs": [
+	]
+}

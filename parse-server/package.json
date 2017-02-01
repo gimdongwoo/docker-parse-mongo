@@ -1,0 +1,51 @@
+{
+  "name": "parse-server-example",
+  "version": "1.4.0",
+  "description": "An example Parse API server using the parse-server module",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ParsePlatform/parse-server-example"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "~4.14.0",
+    "kerberos": "~0.0.0",
+    "parse": "~1.9.1",
+    "parse-server": "2.3.2",
+    "underscore": "~1.8.3",
+    "moment": "~2.17.1",
+    "applinks-metatag": "~0.0.0",
+    "mandrill": "git://github.com/flovilmart/parse-mandrill#0.0.1-parse",
+    "sendgrid": "git://github.com/flovilmart/parse-sendgrid#0.0.1-parse",
+    "stripe": "git://github.com/flovilmart/parse-stripe#2.5.0-parse",
+    "twilio": "~2.11.1",
+    "better-npm-run": "~0.0.8",
+    "cron": "~1.2.1",
+    "parse-dashboard": "^1.0.15"
+  },
+  "scripts": {
+    "start": "better-npm-run prod"
+  },
+  "betterScripts": {
+    "prod": {
+      "command": "node index.js",
+      "env": {
+        "NODE_ENV": "production",
+        "APP_ID": "3wGnqTnHANzT8DAnjSLsrJbQffp0PxHX",
+        "MASTER_KEY": "UGw3LTION8uMSZ97N9XxUVaQFR1i6tEZ",
+        "DATABASE_URI": "mongodb://mongo1:27017,mongo2:27017/parseapp?replicaSet=rs0",
+        "ADM_USER": "admin",
+        "ADM_PASS": "password",
+        "S3_ACCESS_KEY": "",
+        "S3_SECRET_KEY": "",
+        "S3_BUCKET": "",
+        "S3_REGION": "",
+        "S3_DIRECT_ACCESS": true
+      }
+    }
+  },
+  "engines": {
+    "node": ">=4.3"
+  }
+}

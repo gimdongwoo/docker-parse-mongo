@@ -1,0 +1,37 @@
+machine:
+  python:
+    version: 2.7.3
+  services:
+    - docker
+  pre:
+    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
+
+dependencies:
+  pre:
+    - sudo pip install docker-compose
+    - sudo mkdir -p $CIRCLE_TEST_REPORTS/coverage_html/
+    - docker info
+    - docker version
+    - docker-compose version
+test:
+  pre:
+    # starting the backend services I want for my test container using docker run, which will not bind published ports by default
+     - docker-compose -f docker-compose.yml -f docker-compose-test.yml run -d mongo3
+     - docker-compose -f docker-compose.yml -f docker-compose-test.yml run -d mongo2
+     - docker-compose -f docker-compose.yml -f docker-compose-test.yml run -d mongo1
+     - docker-compose -f docker-compose.yml -f docker-compose-test.yml run --no-deps -d mongosetup
+  override:
+     # docker-compose run was restarting all linked services with their published ports and causing port bind collisions
+     # so specifying --no-deps so they don't restart
+     - docker-compose -f docker-compose.yml -f docker-compose-test.yml run --no-deps test
+  post:
+     #docker-compose stop was not stopping containers started with docker-compose run
+     # so using this hackity hack to force stop them all
+     - docker stop $(docker ps -a -q)
+     # get each log separately - docker-compose logs times out, I think it's trying to stream even though the containers are stopped.
+     # depends on the standard naming convention of docker-compose
+     - docker logs dockermongodbreplicaset_mongo1_run_1 > $CIRCLE_TEST_REPORTS/mongo1.log
+     - docker logs dockermongodbreplicaset_mongo2_run_1 > $CIRCLE_TEST_REPORTS/mongo2.log
+     - docker logs dockermongodbreplicaset_mongo3_run_1 > $CIRCLE_TEST_REPORTS/mongo3.log
+     - docker logs dockermongodbreplicaset_mongosetup_run_1 > $CIRCLE_TEST_REPORTS/mongosetup.log
+     - docker logs dockermongodbreplicaset_test_run_1 > $CIRCLE_TEST_REPORTS/test.log

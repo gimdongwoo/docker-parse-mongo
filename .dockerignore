@@ -1,0 +1,6 @@
+*.md
+!README.md
+tests/*
+*.tar.gz
+mongodb/*
+docker-mongodb-replicaset

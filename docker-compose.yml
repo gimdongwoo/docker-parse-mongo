@@ -1,0 +1,63 @@
+version: "2"
+services:
+  mongo3:
+    hostname: mongo3
+    image: mongo:3.4
+    mem_limit: 128m
+    ports:
+      - "27018:27017"
+      - "28018:28017"
+    restart: always
+    volumes:
+      - ./data/rs0-3:/data/db
+    entrypoint: [ "mongod", "--replSet", "rs0", "--nojournal", "--smallfiles", "--rest", "--noprealloc" ]
+  mongo2:
+    hostname: mongo2
+    image: mongo:3.4
+    mem_limit: 256m
+    ports:
+      - "27019:27017"
+      - "28019:28017"
+    restart: always
+    volumes:
+      - ./data/rs0-2:/data/db
+    entrypoint: [ "mongod", "--replSet", "rs0", "--journal", "--smallfiles", "--rest" ]
+  mongo1:
+    hostname: mongo1
+    image: mongo:3.4
+    mem_limit: 256m
+    ports:
+      - "27017:27017"
+      - "28017:28017"
+    links:
+      - "mongo2:mongo2"
+      - "mongo3:mongo3"
+    restart: always
+    volumes:
+      - ./data/rs0-1:/data/db
+    entrypoint: [ "mongod", "--replSet", "rs0", "--journal", "--smallfiles", "--rest" ]
+  # Configures the MongoDB replicaset
+  mongosetup:
+    image: mongo:3.4
+    mem_limit: 128m
+    links:
+      - "mongo1:mongo1"
+      - "mongo2:mongo2"
+      - "mongo3:mongo3"
+    volumes:
+      - ./scripts:/scripts
+    entrypoint: [ "/scripts/setup.sh" ]
+  # Parse-server
+  parseapi:
+    hostname: parseapi
+    mem_limit: 128m
+    build: ./parse-server
+    links:
+      - "mongo1:mongo1"
+      - "mongo2:mongo2"
+      - "mongo3:mongo3"
+    ports:
+      - "1337:1337"
+    volumes:
+      - ./parse-server/cloud:/parse/cloud
+      - ./parse-server/public:/parse/public
