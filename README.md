@@ -1,12 +1,12 @@
 Parse Server with MongoDB ReplicaSet using Docker (for AWS EC2)
 =============================
 
-### Notes
+## Notes
 
 It's probably not a good idea to run this setup in production as each mongo instance should be split across different machines. However for a single ec2 instance environment this fits our needs.
 
 
-### Usage
+## Usage
 
 - Start and show logs (turn off logs : ctrl+c)
 
@@ -32,14 +32,29 @@ $ docker-compose restart parseapi
 $ docker-compose build
 ```
 
+## Parse-server
+
+- Default address
+
+```console
+$ curl http://localhost:1337/parse
+```
+
+- Dashboard (Web Data Browser)
+
+```console
+http://localhost:1337/dashboard
+```
+
+
 #### Parse Server external path
 - 'parse-server/cloud' and 'parse-server/public' are accessable volume.
 	- you can modify them and restart parseapi container for deploy.
 
 
-#### Access Shell of Container
+## Access Bash shell of Container
 
-- Check Status of mongo containers 
+- Check Status of Docker containers 
 
 ```console
 $ docker ps
@@ -71,8 +86,8 @@ dockerparsemongo_parseapi_1     /parse/setup.sh                  Up       0.0.0.
 
 	* And, access mongo shell using `mongo`
 
-	
-### MongoDB Storage for EC2
+
+## MongoDB Storage for EC2
 
 - When created EC2 instance, add 3 ebs volumes for db path.
 - mount ebs volumes to './data/rs0-1', './data/rs0-2', './data/rs0-3'
@@ -87,7 +102,7 @@ $ echo '/dev/xvdb __your-path__/data/rs0-1 ext4 defaults,auto,noatime,noexec 0 0
 ```
 
 
-### MongoDB Backup & Restore
+## MongoDB Backup & Restore
 
 - I recommend to use aws ebs snapshot for backup & restore.
 - You can read it.
@@ -95,14 +110,14 @@ $ echo '/dev/xvdb __your-path__/data/rs0-1 ext4 defaults,auto,noatime,noexec 0 0
 	- [MongoDB point-in-time recoveries](https://medium.freecodecamp.com/mongodb-point-in-time-recoveries-or-how-we-saved-600-dollars-a-month-and-got-a-better-backup-55466b7d714#.52l8cu4cv)
 
 
-### Caution
+## Caution
 
 - Parse Keys
 	- You need to change Parse-server keys in parse-server/package.json
 	- For making new keys, I recommend to use [randomkeygem.com](http://randomkeygen.com/)
 
 
-### Inspired & Referenced by
+## Inspired & Referenced by
 - [soleo/docker-mongodb-replicaset](https://github.com/soleo/docker-mongodb-replicaset)
 - [yeasy/docker-compose-files](https://github.com/yeasy/docker-compose-files)
 - [b00giZm/docker-compose-nodejs-examples](https://github.com/b00giZm/docker-compose-nodejs-examples/tree/master/05-nginx-express-redis-nodemon)
