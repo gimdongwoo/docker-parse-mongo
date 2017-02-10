@@ -2,7 +2,7 @@
 
 if [ "$(curl 2>&1 | grep 'command not found')" ]; then
   echo "Install Curl.."
-  apt-get -y install curl
+  apt-get update && apt-get -y install curl
 fi;
 
 MONGODB1=`ping -c 1 mongo1 | head -1  | cut -d "(" -f 2 | cut -d ")" -f 1`
