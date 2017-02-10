@@ -5,27 +5,27 @@ services:
     image: mongo:3.4
     mem_limit: 128m
     ports:
-      - "27018:27017"
-      - "28018:28017"
+      - "27018:27018"
+      - "28018:28018"
     networks:
       - my-net
     restart: always
     volumes:
       - ./data/rs0-3:/data/db
-    entrypoint: [ "mongod", "--replSet", "rs0", "--nojournal", "--smallfiles", "--rest", "--noprealloc" ]
+    entrypoint: [ "mongod", "--replSet", "rs0", "--nojournal", "--smallfiles", "--rest", "--noprealloc", "--port", "27018" ]
   mongo2:
     container_name: mongo2
     image: mongo:3.4
     mem_limit: 256m
     ports:
-      - "27019:27017"
-      - "28019:28017"
+      - "27019:27019"
+      - "28019:28019"
     networks:
       - my-net
     restart: always
     volumes:
       - ./data/rs0-2:/data/db
-    entrypoint: [ "mongod", "--replSet", "rs0", "--journal", "--smallfiles", "--rest" ]
+    entrypoint: [ "mongod", "--replSet", "rs0", "--journal", "--smallfiles", "--rest", "--port", "27019" ]
   mongo1:
     container_name: mongo1
     image: mongo:3.4
@@ -38,7 +38,7 @@ services:
     restart: always
     volumes:
       - ./data/rs0-1:/data/db
-    entrypoint: [ "mongod", "--replSet", "rs0", "--journal", "--smallfiles", "--rest" ]
+    entrypoint: [ "mongod", "--replSet", "rs0", "--journal", "--smallfiles", "--rest", "--port", "27017" ]
   # Configures the MongoDB replicaset
   mongosetup:
     image: mongo:3.4

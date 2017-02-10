@@ -34,7 +34,7 @@
         "NODE_ENV": "production",
         "APP_ID": "3wGnqTnHANzT8DAnjSLsrJbQffp0PxHX",
         "MASTER_KEY": "UGw3LTION8uMSZ97N9XxUVaQFR1i6tEZ",
-        "DATABASE_URI": "mongodb://mongo1:27017,mongo2:27017/parseapp?replicaSet=rs0",
+        "DATABASE_URI": "mongodb://mongo1:27017,mongo2:27019/parseapp?replicaSet=rs0",
         "ADM_USER": "admin",
         "ADM_PASS": "password",
         "S3_ACCESS_KEY": "",
