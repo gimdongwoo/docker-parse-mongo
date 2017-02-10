@@ -25,7 +25,7 @@ services:
     restart: always
     volumes:
       - ./data/rs0-2:/data/db
-    entrypoint: [ "mongod", "--replSet", "rs0", "--journal", "--smallfiles", "--rest", "--port", "27019" ]
+    entrypoint: [ "mongod", "--replSet", "rs0", "--journal", "--smallfiles", "--rest", "--port", "27019", "--wiredTigerCacheSizeGB", "0.1" ]
   mongo1:
     container_name: mongo1
     image: mongo:3.4
@@ -38,7 +38,7 @@ services:
     restart: always
     volumes:
       - ./data/rs0-1:/data/db
-    entrypoint: [ "mongod", "--replSet", "rs0", "--journal", "--smallfiles", "--rest", "--port", "27017" ]
+    entrypoint: [ "mongod", "--replSet", "rs0", "--journal", "--smallfiles", "--rest", "--port", "27017", "--wiredTigerCacheSizeGB", "0.1" ]
   # Configures the MongoDB replicaset
   mongosetup:
     image: mongo:3.4
