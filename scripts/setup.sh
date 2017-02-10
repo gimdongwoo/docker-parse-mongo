@@ -5,39 +5,35 @@ if [ "$(curl 2>&1 | grep 'command not found')" ]; then
   apt-get update && apt-get -y install curl
 fi;
 
-MONGODB1=`ping -c 1 mongo1 | head -1  | cut -d "(" -f 2 | cut -d ")" -f 1`
-MONGODB2=`ping -c 1 mongo2 | head -1  | cut -d "(" -f 2 | cut -d ")" -f 1`
-MONGODB3=`ping -c 1 mongo3 | head -1  | cut -d "(" -f 2 | cut -d ")" -f 1`
-
 echo "Waiting for MongoDB startup.."
-until [ "$(curl http://${MONGODB1}:28017/serverStatus\?text\=1 2>&1 | grep uptime | head -1)" ]; do
+until [ "$(curl http://mongo1:28017/serverStatus\?text\=1 2>&1 | grep uptime | head -1)" ]; do
   printf '.'
   sleep 1
 done
 
-echo $(curl http://${MONGODB1}:28017/serverStatus\?text\=1 2>&1 | grep uptime | head -1)
+echo $(curl http://mongo1:28017/serverStatus\?text\=1 2>&1 | grep uptime | head -1)
 echo "MongoDB Started.."
 
 
 echo SETUP.sh time now: `date +"%T" `
-mongo --host ${MONGODB1}:27017 <<EOF
+mongo --host mongo1:27017 <<EOF
    var cfg = {
         "_id": "rs0",
         "version": 1,
         "members": [
             {
                 "_id": 0,
-                "host": "${MONGODB1}:27017",
+                "host": "mongo1:27017",
                 "priority": 2
             },
             {
                 "_id": 1,
-                "host": "${MONGODB2}:27017",
+                "host": "mongo2:27017",
                 "priority": 0
             },
             {
                 "_id": 2,
-                "host": "${MONGODB3}:27017",
+                "host": "mongo3:27017",
                 "priority": 1,
                 "arbiterOnly": true
             }
