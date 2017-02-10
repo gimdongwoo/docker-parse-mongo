@@ -2,7 +2,6 @@
 
 if [ "$(curl 2>&1 | grep 'command not found')" ]; then
   echo "Install Curl.."
-  apt-get update
   apt-get -y install curl
 fi;
 
