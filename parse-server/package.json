@@ -14,7 +14,7 @@
     "parse": "~1.9.1",
     "parse-server": "2.3.2",
     "underscore": "~1.8.3",
-    "moment": "~2.17.1",
+    "moment": "~1.7.2",
     "applinks-metatag": "~0.0.0",
     "mandrill": "git://github.com/flovilmart/parse-mandrill#0.0.1-parse",
     "sendgrid": "git://github.com/flovilmart/parse-sendgrid#0.0.1-parse",
