@@ -1,10 +1,5 @@
 #!/bin/bash
 
-if [ "$(curl 2>&1 | grep 'command not found')" ]; then
-  echo "Install Curl.."
-  apt-get update && apt-get -y install curl
-fi;
-
 echo "Waiting for MongoDB startup.."
 until [ "$(curl http://mongo1:28017/serverStatus\?text\=1 2>&1 | grep uptime | head -1)" ]; do
   printf '.'

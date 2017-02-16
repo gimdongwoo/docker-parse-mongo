@@ -41,8 +41,8 @@ services:
     entrypoint: [ "mongod", "--replSet", "rs0", "--journal", "--smallfiles", "--rest", "--port", "27017", "--wiredTigerCacheSizeGB", "0.1" ]
   # Configures the MongoDB replicaset
   mongosetup:
-    image: mongo:3.4
     mem_limit: 128m
+    build: ./mongosetup
     networks:
       - my-net
     volumes:
