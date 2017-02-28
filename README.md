@@ -105,7 +105,8 @@ $ echo '/dev/xvdb __your-path__/data/rs0-1 ext4 defaults,auto,noatime,noexec 0 0
 ## MongoDB Backup & Restore
 
 - I recommend to use aws ebs snapshot for backup & restore.
-- You can read it.
+	- [lambda-ec2-snapshots](https://github.com/jveldboom/lambda-ec2-snapshots)
+- And, you can read it.
 	- [EC2 Backup and Restore](https://docs.mongodb.com/ecosystem/tutorial/backup-and-restore-mongodb-on-amazon-ec2/)
 	- [MongoDB point-in-time recoveries](https://medium.freecodecamp.com/mongodb-point-in-time-recoveries-or-how-we-saved-600-dollars-a-month-and-got-a-better-backup-55466b7d714#.52l8cu4cv)
 
