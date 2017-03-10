@@ -1,0 +1,27 @@
+version: "2"
+services:
+  # Parse-server
+  parseapi:
+    container_name: parseapi
+    mem_limit: 256m
+    build: ./parse-server
+    networks:
+      - my-net
+    restart: always
+    volumes:
+      - ./parse-server/cloud:/parse/cloud
+      - ./parse-server/public:/parse/public
+    entrypoint: [ "/parse/start_dev.sh" ]
+  # nginx proxy
+  nginx:
+    container_name: nginx
+    mem_limit: 64m
+    build: ./nginx/
+    networks:
+      - my-net
+    ports:
+      - "80:80"
+    restart: always
+networks:
+  my-net:
+    driver: bridge

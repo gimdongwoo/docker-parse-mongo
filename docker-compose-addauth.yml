@@ -13,7 +13,7 @@ services:
     volumes:
       - ./data/rs0-3:/data/db
       - ./keyfile:/srv/mongodb
-    entrypoint: [ "mongod", "--replSet", "rs0", "--nojournal", "--smallfiles", "--rest", "--noprealloc", "--port", "27018", "--auth", "--keyFile", "/srv/mongodb/mongodb-keyfile" ]
+    entrypoint: [ "mongod", "--replSet", "rs0", "--nojournal", "--smallfiles", "--rest", "--noprealloc", "--port", "27018" ]
   mongo2:
     container_name: mongo2
     image: mongo:3.4
@@ -27,7 +27,7 @@ services:
     volumes:
       - ./data/rs0-2:/data/db
       - ./keyfile:/srv/mongodb
-    entrypoint: [ "mongod", "--replSet", "rs0", "--journal", "--smallfiles", "--rest", "--port", "27019", "--auth", "--keyFile", "/srv/mongodb/mongodb-keyfile" ]
+    entrypoint: [ "mongod", "--replSet", "rs0", "--journal", "--smallfiles", "--rest", "--port", "27019" ]
   mongo1:
     container_name: mongo1
     image: mongo:3.4
@@ -41,7 +41,7 @@ services:
     volumes:
       - ./data/rs0-1:/data/db
       - ./keyfile:/srv/mongodb
-    entrypoint: [ "mongod", "--replSet", "rs0", "--journal", "--smallfiles", "--rest", "--port", "27017", "--auth", "--keyFile", "/srv/mongodb/mongodb-keyfile" ]
+    entrypoint: [ "mongod", "--replSet", "rs0", "--journal", "--smallfiles", "--rest", "--port", "27017" ]
   # Configures the MongoDB replicaset
   mongosetup:
     mem_limit: 64m
@@ -51,28 +51,7 @@ services:
     volumes:
       - ./scripts:/scripts
       - ./keyfile:/srv/mongodb
-    entrypoint: [ "/scripts/setup.sh" ]
-  # Parse-server
-  parseapi:
-    container_name: parseapi
-    mem_limit: 256m
-    build: ./parse-server
-    networks:
-      - my-net
-    restart: always
-    volumes:
-      - ./parse-server/cloud:/parse/cloud
-      - ./parse-server/public:/parse/public
-  # nginx proxy
-  nginx:
-    container_name: nginx
-    mem_limit: 64m
-    build: ./nginx/
-    networks:
-      - my-net
-    ports:
-      - "80:80"
-    restart: always
+    entrypoint: [ "/scripts/setup_addauth.sh" ]
 networks:
   my-net:
     driver: bridge

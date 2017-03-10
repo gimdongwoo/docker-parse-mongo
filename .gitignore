@@ -41,6 +41,7 @@ node_modules
 .env
 mongodb/*
 data/*
+keyfile/*
 
 Resources
 build.log
