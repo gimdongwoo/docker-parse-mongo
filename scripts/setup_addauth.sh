@@ -20,7 +20,7 @@ mongo --host mongo1:27017 <<EOF
     {
       user: "root",
       pwd: "rootpassword",
-      roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+      roles: [ { role: "root", db: "admin" } ]
     }
   );
   db.createUser(
