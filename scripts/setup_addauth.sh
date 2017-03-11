@@ -19,7 +19,7 @@ mongo --host mongo1:27017 <<EOF
   db.createUser(
     {
       user: "root",
-      pwd: "",
+      pwd: "______",
       roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
     }
   );
@@ -30,11 +30,11 @@ mongo --host mongo1:27017 <<EOF
       roles: [ { role: "clusterMonitor", db: "admin" } ]
     }
   );
-  use institutebox;
+  use ______;
   db.createUser(
     {
-      user: "ibadmin",
-      pwd: "",
+      user: "______",
+      pwd: "______",
       roles: ["dbAdmin", "readWrite"]
     }
   );

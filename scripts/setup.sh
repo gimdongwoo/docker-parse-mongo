@@ -13,7 +13,7 @@ echo "MongoDB Started.."
 echo SETUP.sh time now: `date +"%T" `
 mongo --host mongo1:27017 <<EOF
   use admin;
-  db.auth("root", "Boxout!0401");
+  db.auth("root", "______");
   var cfg = {
     "_id": "rs0",
     "members": [
