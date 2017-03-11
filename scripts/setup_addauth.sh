@@ -19,7 +19,7 @@ mongo --host mongo1:27017 <<EOF
   db.createUser(
     {
       user: "root",
-      pwd: "Boxout!0401",
+      pwd: "",
       roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
     }
   );
@@ -34,7 +34,7 @@ mongo --host mongo1:27017 <<EOF
   db.createUser(
     {
       user: "ibadmin",
-      pwd: "Boxout!0401",
+      pwd: "",
       roles: ["dbAdmin", "readWrite"]
     }
   );
