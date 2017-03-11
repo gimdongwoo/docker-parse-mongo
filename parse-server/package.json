@@ -25,25 +25,7 @@
     "parse-dashboard": "^1.0.15"
   },
   "scripts": {
-    "start": "better-npm-run prod"
-  },
-  "betterScripts": {
-    "prod": {
-      "command": "node index.js",
-      "env": {
-        "NODE_ENV": "production",
-        "APP_ID": "3wGnqTnHANzT8DAnjSLsrJbQffp0PxHX",
-        "MASTER_KEY": "UGw3LTION8uMSZ97N9XxUVaQFR1i6tEZ",
-        "DATABASE_URI": "mongodb://mongo1:27017,mongo2:27019/parseapp?replicaSet=rs0",
-        "ADM_USER": "admin",
-        "ADM_PASS": "password",
-        "S3_ACCESS_KEY": "",
-        "S3_SECRET_KEY": "",
-        "S3_BUCKET": "",
-        "S3_REGION": "",
-        "S3_DIRECT_ACCESS": true
-      }
-    }
+    "start": "node index.js"
   },
   "engines": {
     "node": ">=4.3"

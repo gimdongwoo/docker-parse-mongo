@@ -19,7 +19,7 @@ mongo --host mongo1:27017 <<EOF
   db.createUser(
     {
       user: "root",
-      pwd: "______",
+      pwd: "rootpassword",
       roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
     }
   );
@@ -30,11 +30,11 @@ mongo --host mongo1:27017 <<EOF
       roles: [ { role: "clusterMonitor", db: "admin" } ]
     }
   );
-  use ______;
+  use parseapp;
   db.createUser(
     {
-      user: "______",
-      pwd: "______",
+      user: "parseapp",
+      pwd: "parsepassword",
       roles: ["dbAdmin", "readWrite"]
     }
   );
