@@ -39,7 +39,7 @@ It's probably not a good idea to run this setup in production as each mongo inst
 1. Initial replicaset
 
 	```console
-	$ docker-compose -f docker-compose-init.yml
+	$ docker-compose -f docker-compose-init.yml up
 	(Stop after all work is done : ctrl + c)
 	```
 
@@ -52,7 +52,7 @@ It's probably not a good idea to run this setup in production as each mongo inst
 3. Add authentication
 
 	```console
-	$ docker-compose -f docker-compose-addauth.yml
+	$ docker-compose -f docker-compose-addauth.yml up
 	(Stop after all work is done : ctrl + c)
 	```
 
@@ -98,7 +98,7 @@ It's probably not a good idea to run this setup in production as each mongo inst
 
 ## Access Bash shell of Container
 
-- Check Status of Docker containers 
+- Check Status of Docker containers
 
 	```console
 	$ docker ps
@@ -113,18 +113,18 @@ It's probably not a good idea to run this setup in production as each mongo inst
 	$ docker-compose ps
 	            Name                           Command               State                          Ports                        
 	----------------------------------------------------------------------------------------------------------------------------
-	dockerparsemongo_mongo1_1       mongod --replSet rs0 --jou ...   Up       0.0.0.0:27017->27017/tcp, 0.0.0.0:28017->28017/tcp 
-	dockerparsemongo_mongo2_1       mongod --replSet rs0 --jou ...   Up       0.0.0.0:27019->27017/tcp, 0.0.0.0:28019->28017/tcp 
-	dockerparsemongo_mongo3_1       mongod --replSet rs0 --noj ...   Up       0.0.0.0:27018->27017/tcp, 0.0.0.0:28018->28017/tcp 
+	dockerparsemongo_mongo1_1       mongod --replSet rs0 --jou ...   Up       0.0.0.0:27017->27017/tcp, 0.0.0.0:28017->28017/tcp
+	dockerparsemongo_mongo2_1       mongod --replSet rs0 --jou ...   Up       0.0.0.0:27019->27017/tcp, 0.0.0.0:28019->28017/tcp
+	dockerparsemongo_mongo3_1       mongod --replSet rs0 --noj ...   Up       0.0.0.0:27018->27017/tcp, 0.0.0.0:28018->28017/tcp
 	dockerparsemongo_mongosetup_1   /scripts/setup.sh                Exit 0                                                      
 	dockerparsemongo_parseapi_1     /parse/setup.sh                  Up       0.0.0.0:1337->1337/tcp
 	```
 
-* Access shell of Parse-server container with 
+* Access shell of Parse-server container with
 	* `docker exec -it dockerparsemongo_parseapi_1 bash`
 	* `docker-compose exec parseapi bash`
 
-* Access shell of MongoDB container with 
+* Access shell of MongoDB container with
 	* `docker exec -it dockerparsemongo_mongo1_1 bash`
 	* `docker-compose exec mongo1 bash`
 
@@ -139,11 +139,11 @@ It's probably not a good idea to run this setup in production as each mongo inst
 - mount ebs volumes to './data/rs0-1', './data/rs0-2', './data/rs0-3'
 
 	```console
-	$ sudo mkfs.ext4 /dev/xvdb 
-	$ sudo mkfs.ext4 /dev/xvdc 
+	$ sudo mkfs.ext4 /dev/xvdb
+	$ sudo mkfs.ext4 /dev/xvdc
 	$ sudo mkfs.ext4 /dev/xvdd
-	$ echo '/dev/xvdb __your-path__/data/rs0-1 ext4 defaults,auto,noatime,noexec 0 0 
-	/dev/xvdc __your-path__/data/rs0-2 ext4 defaults,auto,noatime,noexec 0 0 
+	$ echo '/dev/xvdb __your-path__/data/rs0-1 ext4 defaults,auto,noatime,noexec 0 0
+	/dev/xvdc __your-path__/data/rs0-2 ext4 defaults,auto,noatime,noexec 0 0
 	/dev/xvdd __your-path__/data/rs0-3 ext4 defaults,auto,noatime,noexec 0 0' | sudo tee -a /etc/fstab
 	```
 
