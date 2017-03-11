@@ -47,7 +47,7 @@ services:
       - my-net
     volumes:
       - ./scripts:/scripts
-    entrypoint: [ "/scripts/setup.sh" ]
+    entrypoint: [ "/scripts/setup_init.sh" ]
 networks:
   my-net:
     driver: bridge

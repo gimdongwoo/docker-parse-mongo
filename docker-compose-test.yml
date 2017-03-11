@@ -2,7 +2,7 @@ version: "2"
 services:
   test:
     hostname: test
-    image: mongo:2.6
+    image: mongo:3.4
     volumes:
         - .:/docker-mongodb-replicaset
         - $CIRCLE_TEST_REPORTS:/circle_artifacts
