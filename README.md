@@ -54,6 +54,7 @@ It's probably not a good idea to run this setup in production as each mongo inst
 	$ docker-compose -f docker-compose-addauth.yml up
 	(Stop after all work is done : ctrl + c)
 	```
+	If added user failed, retry until shown 'Successfully added user'.
 
 ### Change Parse-server Keys
 
