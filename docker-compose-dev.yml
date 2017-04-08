@@ -3,7 +3,7 @@ services:
   # Parse-server
   parseapi:
     container_name: parseapi
-    mem_limit: 256m
+    mem_limit: 128m
     build: ./parse-server
     networks:
       - my-net

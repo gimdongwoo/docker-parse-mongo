@@ -17,7 +17,7 @@ services:
   mongo2:
     container_name: mongo2
     image: mongo:3.4
-    mem_limit: 256m
+    mem_limit: 128m
     ports:
       - "27019:27019"
       - "28019:28019"
@@ -31,7 +31,7 @@ services:
   mongo1:
     container_name: mongo1
     image: mongo:3.4
-    mem_limit: 256m
+    mem_limit: 128m
     ports:
       - "27017:27017"
       - "28017:28017"
