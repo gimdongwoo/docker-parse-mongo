@@ -75,3 +75,6 @@ dist
 *.log
 *.sql
 *.sqlite
+
+config.sh
+config_dev.sh
