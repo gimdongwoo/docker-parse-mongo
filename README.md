@@ -43,10 +43,10 @@ It's probably not a good idea to run this setup in production as each mongo inst
 	(Stop after all work is done : ctrl + c)
 	```
 
-2. Change password in these files
-	- /setup/config.sh
-	- /parse-server/config.sh
-	- /parse-server/config_dev.sh
+2. Remove '_sample' and Change password in these files
+	- /setup/config_sample.sh > /setup/config.sh
+	- /parse-server/config_sample.sh > /parse-server/config.sh
+	- /parse-server/config_dev_sample.sh > /parse-server/config_dev.sh
 
 3. Add authentication
 
