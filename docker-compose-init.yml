@@ -11,7 +11,7 @@ services:
       - my-net
     restart: always
     volumes:
-      - ./data/rs0-3:/data/db
+      - ./data/rs03:/data/db
     entrypoint: [ "mongod", "--replSet", "rs0", "--nojournal", "--smallfiles", "--rest", "--noprealloc", "--port", "27018" ]
   mongo2:
     container_name: mongo2
@@ -24,7 +24,7 @@ services:
       - my-net
     restart: always
     volumes:
-      - ./data/rs0-2:/data/db
+      - ./data/rs02:/data/db
     entrypoint: [ "mongod", "--replSet", "rs0", "--journal", "--smallfiles", "--rest", "--port", "27019" ]
   mongo1:
     container_name: mongo1
@@ -37,7 +37,7 @@ services:
       - my-net
     restart: always
     volumes:
-      - ./data/rs0-1:/data/db
+      - ./data/rs01:/data/db
     entrypoint: [ "mongod", "--replSet", "rs0", "--journal", "--smallfiles", "--rest", "--port", "27017" ]
   # Configures the MongoDB replicaset
   mongosetup:

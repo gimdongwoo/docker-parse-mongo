@@ -135,15 +135,15 @@ It's probably not a good idea to run this setup in production as each mongo inst
 ### MongoDB Storage for EC2
 
 - When created EC2 instance, add 3 ebs volumes for db path.
-- mount ebs volumes to './data/rs0-1', './data/rs0-2', './data/rs0-3'
+- mount ebs volumes to './data/rs01', './data/rs02', './data/rs03'
 
 	```console
 	$ sudo mkfs.ext4 /dev/xvdb
 	$ sudo mkfs.ext4 /dev/xvdc
 	$ sudo mkfs.ext4 /dev/xvdd
-	$ echo '/dev/xvdb __your-path__/data/rs0-1 ext4 defaults,auto,noatime,noexec 0 0
-	/dev/xvdc __your-path__/data/rs0-2 ext4 defaults,auto,noatime,noexec 0 0
-	/dev/xvdd __your-path__/data/rs0-3 ext4 defaults,auto,noatime,noexec 0 0' | sudo tee -a /etc/fstab
+	$ echo '/dev/xvdb __your-path__/data/rs01 ext4 defaults,auto,noatime,noexec 0 0
+	/dev/xvdc __your-path__/data/rs02 ext4 defaults,auto,noatime,noexec 0 0
+	/dev/xvdd __your-path__/data/rs03 ext4 defaults,auto,noatime,noexec 0 0' | sudo tee -a /etc/fstab
 	```
 
 
