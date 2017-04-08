@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 mongo mongo1:27017 --eval "db.stats()" > /dev/null 2>&1
 

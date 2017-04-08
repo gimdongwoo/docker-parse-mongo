@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+source /scripts/config.sh
 
 echo "Waiting for MongoDB startup.."
 until [ "$(mongo --host mongo1:27017 admin --eval "db.auth(\"datadog\", \"datadog\");printjson(db.serverStatus())" | grep uptime | head -1)" ]; do
@@ -13,7 +15,7 @@ echo "MongoDB Started.."
 echo SETUP.sh time now: `date +"%T" `
 mongo --host mongo1:27017 <<EOF
   use admin;
-  db.auth("root", "______");
+  db.auth("root", "$rootPassword");
   var cfg = {
     "_id": "rs0",
     "members": [

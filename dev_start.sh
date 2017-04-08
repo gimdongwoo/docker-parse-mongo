@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "BUILD DOCKER"
 docker-compose -f docker-compose-dev.yml build

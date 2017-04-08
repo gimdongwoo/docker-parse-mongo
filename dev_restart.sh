@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "RESTART parseapi"
 docker-compose restart parseapi

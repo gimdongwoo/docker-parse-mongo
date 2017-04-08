@@ -44,10 +44,9 @@ It's probably not a good idea to run this setup in production as each mongo inst
 	```
 
 2. Change password in these files
-	- /setup/setup_addauth.sh
-	- /setup/setup.sh
-	- /parse-server/start.sh
-	- /parse-server/start_dev.sh
+	- /setup/config.sh
+	- /parse-server/config.sh
+	- /parse-server/config_dev.sh
 
 3. Add authentication
 
@@ -59,8 +58,8 @@ It's probably not a good idea to run this setup in production as each mongo inst
 ### Change Parse-server Keys
 
 - You need to change Parse-server keys in these files.
-	- /parse-server/start.sh
-	- /parse-server/start_dev.sh
+	- /parse-server/config.sh
+	- /parse-server/config_dev.sh
 
 - For making new keys, I recommend to use [randomkeygem.com](http://randomkeygen.com/)
 
