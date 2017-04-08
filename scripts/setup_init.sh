@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "Waiting for MongoDB startup.."
 until [ "$(mongo --host mongo1:27017 admin --eval "printjson(db.serverStatus())" | grep uptime | head -1)" ]; do

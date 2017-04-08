@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+source /scripts/config.sh
 
 openssl rand -base64 741 > /srv/mongodb/mongodb-keyfile
 chmod 600 /srv/mongodb/mongodb-keyfile
@@ -19,7 +21,7 @@ mongo --host mongo1:27017 <<EOF
   db.createUser(
     {
       user: "root",
-      pwd: "rootpassword",
+      pwd: "$rootPassword",
       roles: [ { role: "root", db: "admin" } ]
     }
   );
@@ -33,8 +35,8 @@ mongo --host mongo1:27017 <<EOF
   use parseapp;
   db.createUser(
     {
-      user: "parseapp",
-      pwd: "parsepassword",
+      user: "$userId",
+      pwd: "$userPassword",
       roles: ["dbAdmin", "readWrite"]
     }
   );
