@@ -5,7 +5,7 @@
 var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
-var S3Adapter = require('parse-server').S3Adapter;
+var GCSAdapter = require('parse-server-gcs-adapter');
 
 // config
 var PARSE_CONFIG = JSON.parse((process.env.PARSE_CONFIG).replace(/'/gi, "\""));
@@ -43,15 +43,13 @@ var api = new ParseServer({
   //     { pfx: __dirname + "/push/aps_production.p12", bundleId: process.env.APP_BUNDLE_ID, production: true }
   //   ]
   // },
-  // filesAdapter: new S3Adapter(
-  //   process.env.S3_ACCESS_KEY,
-  //   process.env.S3_SECRET_KEY,
-  //   PARSE_APP.s3Bucket,
-  //   {
-  //     region: process.env.S3_REGION,
-  //     directAccess: process.env.S3_DIRECT_ACCESS
-  //   }
-  // )
+  // filesAdapter: new GCSAdapter({
+  //   "projectId": PARSE_APP.gcp_projectId,
+  //   "keyFilename": __dirname + PARSE_APP.gcp_keyfilePath,
+  //   "bucket": PARSE_APP.gcp_bucket,
+  //   "bucketPrefix": '',
+  //   "directAccess": true
+  // }),
 });
 
 // Serve the Parse API on the /parse URL prefix

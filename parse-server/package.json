@@ -17,6 +17,7 @@
     "moment": "~1.7.2",
     "applinks-metatag": "~0.0.0",
     "mandrill": "git://github.com/flovilmart/parse-mandrill#0.0.1-parse",
+    "parse-server-gcs-adapter": "~1.1.2",
     "sendgrid": "git://github.com/flovilmart/parse-sendgrid#0.0.1-parse",
     "stripe": "git://github.com/flovilmart/parse-stripe#2.5.0-parse",
     "twilio": "~2.11.1",
