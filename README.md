@@ -131,7 +131,27 @@ It's probably not a good idea to run this setup in production as each mongo inst
 	* And, access mongo shell using `mongo`
 
 
-## MongoDB Guide
+## HostO/S Guide
+
+### Add swap
+
+- t1-micro has 1Gb memory, requires swap
+
+	```console
+	$ sudo fallocate -l 2G /swapfile
+	$ sudo chown root:root /swapfile
+	$ sudo chmod 600 /swapfile
+	$ sudo mkswap /swapfile	
+	$ sudo swapon /swapfile
+	$ sudo swapon -a
+	$ sudo vi /etc/fstab
+	
+	(Add it to the last line.)
+	/swapfile   swap   swap   defaults  0  0
+	
+	$ sudo swapon -s
+	$ free -m
+	```
 
 ### MongoDB Storage for EC2
 
@@ -147,6 +167,8 @@ It's probably not a good idea to run this setup in production as each mongo inst
 	/dev/xvdd __your-path__/data/rs03 ext4 defaults,auto,noatime,noexec 0 0' | sudo tee -a /etc/fstab
 	```
 
+
+## MongoDB Guide
 
 ### MongoDB Backup & Restore
 
