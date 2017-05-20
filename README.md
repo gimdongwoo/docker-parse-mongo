@@ -1,5 +1,10 @@
-Parse Server with MongoDB ReplicaSet using Docker (for AWS EC2)
+Parse Server with MongoDB ReplicaSet using Docker
 =============================
+
+> This branch is for AWS EC2
+
+> If you want to use Google Cloud Platform, try [GCP branch](https://github.com/gimdongwoo/docker-parse-mongo/tree/gcp)
+
 
 ## Notes
 
