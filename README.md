@@ -136,9 +136,21 @@ It's probably not a good idea to run this setup in production as each mongo inst
 	* And, access mongo shell using `mongo`
 
 
-## HostO/S Guide
+## Host O/S Guide
 
-> I recommend CoreOS for low resource consumption.
+> I recommend CoreOS because it's optimized for Docker.
+
+### Install Docker-Compose
+
+- The execution path of CoreOS differs from other Linux.
+
+	``` console
+	$ sudo mkdir -p /opt/bin
+	$ sudo curl -L "https://github.com/docker/compose/releases/download/1.13.0/docker-compose-$(uname -s)-$(uname -m)" -o /opt/bin/docker-compose
+	$ sudo chmod +x /opt/bin/docker-compose
+	
+	$ docker-compose --version
+	```
 
 ### Add swap
 
