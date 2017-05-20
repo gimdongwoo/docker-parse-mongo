@@ -136,7 +136,10 @@ It's probably not a good idea to run this setup in production as each mongo inst
 	* And, access mongo shell using `mongo`
 
 
-## HostO/S Guide
+## Host O/S Guide
+
+> Choose your favorite Linux, such as AML or Ubuntu.
+> [Docker](https://docs.docker.com/engine/installation/linux/ubuntu/) and [Docker-Compose](https://docs.docker.com/compose/install/) are required.
 
 ### Add swap
 
