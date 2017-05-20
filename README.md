@@ -162,6 +162,8 @@ It's probably not a good idea to run this setup in production as each mongo inst
 
 - When created EC2 instance, add 3 ebs volumes for db path.
 - mount ebs volumes to './data/rs0-1', './data/rs0-2', './data/rs0-3'
+- The free tier provides 30 GB of storage, I recommend this capacity configuration.
+	- host : 9 GB / rs0-1 : 10 GB / rs0-2 : 10 GB / rs0-3 : 1 GB
 
 	```console
 	$ sudo mkfs.ext4 /dev/xvdb
