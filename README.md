@@ -8,7 +8,7 @@ Parse Server with MongoDB ReplicaSet using Docker
 
 ## Notes
 
-It's probably not a good idea to run this setup in production as each mongo instance should be split across different machines. However for a single ec2 instance environment this fits our needs.
+It's probably not a good idea to run this setup in production as each mongo instance should be split across different machines. However for a single Compute Engine instance environment this fits our needs.
 
 
 ## Usage
@@ -138,38 +138,61 @@ It's probably not a good idea to run this setup in production as each mongo inst
 
 ## HostO/S Guide
 
+> I recommend CoreOS for low resource consumption.
+
 ### Add swap
 
-- t1-micro has 1Gb memory, requires swap
+- f1-micro has 0.6Gb memory, requires swap
 
 	```console
-	$ sudo fallocate -l 2G /swapfile
+	$ sudo fallocate -l 1G /swapfile
 	$ sudo chown root:root /swapfile
 	$ sudo chmod 600 /swapfile
 	$ sudo mkswap /swapfile	
 	$ sudo swapon /swapfile
-	$ sudo swapon -a
-	$ sudo vi /etc/fstab
-	
-	(Add it to the last line.)
-	/swapfile   swap   swap   defaults  0  0
 	
 	$ sudo swapon -s
 	$ free -m
 	```
+	
+- CoreOS does not use fstab. Need to [creating the systemd unit file](https://coreos.com/os/docs/latest/adding-swap.html).
 
-### MongoDB Storage for EC2
+### MongoDB Storage for Compute Engine
 
-- When created EC2 instance, add 3 ebs volumes for db path.
-- mount ebs volumes to './data/rs01', './data/rs02', './data/rs03'
+- When created Compute Engine instance, add 2 disk volumes for db path.
+- mount ebs volumes to './data/rs01', './data/rs02'
+- The free tier provides 30 GB of storage, so 10 GB each is recommended (host, rs01, rs02).
 
 	```console
-	$ sudo mkfs.ext4 /dev/xvdb
-	$ sudo mkfs.ext4 /dev/xvdc
-	$ sudo mkfs.ext4 /dev/xvdd
-	$ echo '/dev/xvdb __your-path__/data/rs01 ext4 defaults,auto,noatime,noexec 0 0
-	/dev/xvdc __your-path__/data/rs02 ext4 defaults,auto,noatime,noexec 0 0
-	/dev/xvdd __your-path__/data/rs03 ext4 defaults,auto,noatime,noexec 0 0' | sudo tee -a /etc/fstab
+	$ sudo mkfs.ext4 /dev/sdb
+	$ sudo mkfs.ext4 /dev/sdc
+	```
+	
+- CoreOS does not use fstab. Need to ``mount`` file.
+	> The ``mount`` file for CoreOS has the name changed / to -.
+
+	* /etc/systemd/system/home-USERID-parse-data-rs01.mount
+	
+	```console
+	[Mount]
+	What=/dev/sdb
+	Where=/home/USERID/parse/data/rs01
+	Type=ext4
+
+	[Install]
+	WantedBy=local-fs.target
+	```
+
+	* /etc/systemd/system/home-USERID-parse-data-rs02.mount
+	
+	```console
+	[Mount]
+	What=/dev/sdc
+	Where=/home/USERID/parse/data/rs02
+	Type=ext4
+
+	[Install]
+	WantedBy=local-fs.target
 	```
 
 
@@ -177,11 +200,7 @@ It's probably not a good idea to run this setup in production as each mongo inst
 
 ### MongoDB Backup & Restore
 
-- I recommend to use aws ebs snapshot for backup & restore.
-	- [lambda-ec2-snapshots](https://github.com/jveldboom/lambda-ec2-snapshots)
-- And, you can read it.
-	- [EC2 Backup and Restore](https://docs.mongodb.com/ecosystem/tutorial/backup-and-restore-mongodb-on-amazon-ec2/)
-	- [MongoDB point-in-time recoveries](https://medium.freecodecamp.com/mongodb-point-in-time-recoveries-or-how-we-saved-600-dollars-a-month-and-got-a-better-backup-55466b7d714#.52l8cu4cv)
+- Comming soon.
 
 
 ### Management MongoDB
