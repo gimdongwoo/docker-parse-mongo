@@ -68,6 +68,8 @@ services:
     container_name: nginx
     mem_limit: 32m
     build: ./nginx/
+    depends_on:
+      - parseapi
     networks:
       - my-net
     ports:
