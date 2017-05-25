@@ -49,7 +49,7 @@ It's probably not a good idea to run this setup in production as each mongo inst
 	```
 
 2. Copy, remove '_sample' from the name, and change password these files
-	- /setup/config_sample.sh > /setup/config.sh
+	- /scripts/config_sample.sh > /scripts/config.sh
 	- /parse-server/config_sample.sh > /parse-server/config.sh
 	- /parse-server/config_dev_sample.sh > /parse-server/config_dev.sh
 
