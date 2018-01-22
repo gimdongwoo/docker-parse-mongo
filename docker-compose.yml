@@ -3,7 +3,7 @@ services:
   mongo3:
     container_name: mongo3
     image: mongo:3.4
-    mem_limit: 64m
+    mem_reservation: 64m
     ports:
       - "27018:27018"
       - "28018:28018"
@@ -17,7 +17,7 @@ services:
   mongo2:
     container_name: mongo2
     image: mongo:3.4
-    mem_limit: 128m
+    mem_reservation: 128m
     ports:
       - "27019:27019"
       - "28019:28019"
@@ -31,7 +31,7 @@ services:
   mongo1:
     container_name: mongo1
     image: mongo:3.4
-    mem_limit: 128m
+    mem_reservation: 128m
     ports:
       - "27017:27017"
       - "28017:28017"
@@ -44,7 +44,7 @@ services:
     entrypoint: [ "mongod", "--replSet", "rs0", "--journal", "--smallfiles", "--rest", "--port", "27017", "--auth", "--keyFile", "/srv/mongodb/mongodb-keyfile" ]
   # Configures the MongoDB replicaset
   mongosetup:
-    mem_limit: 64m
+    mem_reservation: 64m
     build: ./mongosetup
     networks:
       - my-net
@@ -55,7 +55,7 @@ services:
   # Parse-server
   parseapi:
     container_name: parseapi
-    mem_limit: 128m
+    mem_reservation: 128m
     build: ./parse-server
     networks:
       - my-net
@@ -66,7 +66,7 @@ services:
   # nginx proxy
   nginx:
     container_name: nginx
-    mem_limit: 32m
+    mem_reservation: 32m
     build: ./nginx/
     depends_on:
       - parseapi
