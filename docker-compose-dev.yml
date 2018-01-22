@@ -3,7 +3,7 @@ services:
   # Parse-server
   parseapi:
     container_name: parseapi
-    mem_limit: 256m
+    mem_reservation: 256m
     build: ./parse-server
     networks:
       - my-net
@@ -15,7 +15,7 @@ services:
   # nginx proxy
   nginx:
     container_name: nginx
-    mem_limit: 64m
+    mem_reservation: 64m
     build: ./nginx/
     networks:
       - my-net
